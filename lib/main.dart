@@ -14,9 +14,7 @@ void main() async {
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  runApp(
-    BlocProvider(create: (context) => QuestionCubit(), child: const MyApp()),
-  );
+  runApp(BlocProvider(create: (_) => QuestionCubit(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

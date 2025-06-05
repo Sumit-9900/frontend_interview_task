@@ -5,6 +5,7 @@ import 'package:frontend_interview_task/features/home/models/question.dart';
 class QuestionButton extends StatelessWidget {
   final Question question;
   final bool isSelected;
+
   const QuestionButton({
     super.key,
     required this.question,
@@ -14,20 +15,44 @@ class QuestionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
       width: (screenWidth - 36) / 2,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
       decoration: BoxDecoration(
         color: const Color(0xFF232A2E),
         borderRadius: BorderRadius.circular(12),
-        border: isSelected
-            ? Border.all(color: AppColors.lightPurpleColor, width: 2)
-            : null,
-        boxShadow: const [
+        border: Border.all(
+          color: isSelected
+              ? AppColors.lightPurpleColor
+              : const Color(0xFF232A2E),
+          width: 2,
+        ),
+        boxShadow: [
+          // Inner shadow 1 (X: -1, Y: -1, Blur: 2, Color: #000000, Opacity: 30%)
           BoxShadow(
-            color: Color(0x4D000000),
-            offset: Offset(2, 2),
+            color: const Color(0x4D000000), // #000000 with 30% opacity
+            offset: const Offset(-1, -1),
+            blurRadius: 2,
+            spreadRadius: 0,
+            // inset:
+            //     true, // This makes it an inner shadow (Note: Flutter doesn't support inset directly)
+          ),
+          // Inner shadow 2 (X: 1, Y: 1, Blur: 2, Color: #484848, Opacity: 30%)
+          BoxShadow(
+            color: const Color(0x4D484848), // #484848 with 30% opacity
+            offset: const Offset(1, 1),
+            blurRadius: 2,
+            spreadRadius: 0,
+            // inset:
+            //     true, // This makes it an inner shadow (Note: Flutter doesn't support inset directly)
+          ),
+          // Drop shadow (X: 2, Y: 2, Blur: 8, Color: #000000, Opacity: 30%)
+          BoxShadow(
+            color: const Color(0x4D000000), // #000000 with 30% opacity
+            offset: const Offset(2, 2),
             blurRadius: 8,
+            spreadRadius: 0,
           ),
         ],
       ),
